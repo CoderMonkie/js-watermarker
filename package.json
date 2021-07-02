@@ -13,6 +13,7 @@
     "type": "git",
     "url": "https://gitee.com/coder-monkey/watermarker.git"
   },
+  "homepage": "https://codermonkie.github.io/watermarker/",
   "main": "./dist/watermarker.umd.js",
   "module": "./dist/watermarker.es.js",
   "exports": {
