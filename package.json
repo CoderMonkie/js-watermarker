@@ -1,0 +1,43 @@
+{
+  "name": "watermarker",
+  "version": "1.0.0",
+  "description": "create watermark tool lib",
+  "keywords": [
+    "watermark",
+    "水印",
+    "ウォーターマーク"
+  ],
+  "author": "码路工人 <maonianyou@foxmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/coder-monkey/watermarker.git"
+  },
+  "main": "./dist/watermarker.umd.js",
+  "module": "./dist/watermarker.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/watermarker.es.js",
+      "require": "./dist/watermarker.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:demo": "vite build --mode demo",
+    "preview": "npm run build:demo && vite preview",
+    "publish:patch": "npm run build && npm version patch && npm publish && git push",
+    "publish:minor": "npm run build && npm version minor && npm publish && git push",
+    "publish:major": "npm run build && npm version major && npm publish && git push"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.3",
+    "@vue/compiler-sfc": "^3.0.5",
+    "element-plus": "^1.0.2-beta.53",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0",
+    "vite": "^2.3.8",
+    "vue": "^3.0.5"
+  }
+}
