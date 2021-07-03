@@ -1,5 +1,5 @@
 {
-  "name": "watermarke-js",
+  "name": "watermark-js",
   "version": "1.0.0",
   "description": "create watermark tool lib",
   "keywords": [
@@ -18,12 +18,12 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/watermarker.umd.js",
-  "module": "./dist/watermarker.es.js",
+  "main": "./dist/watermark-js.umd.js",
+  "module": "./dist/watermark-js.es.js",
   "exports": {
     ".": {
-      "import": "./dist/watermarker.es.js",
-      "require": "./dist/watermarker.umd.js"
+      "import": "./dist/watermark-js.es.js",
+      "require": "./dist/watermark-js.umd.js"
     }
   },
   "scripts": {
