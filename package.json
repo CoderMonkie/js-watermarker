@@ -1,10 +1,11 @@
 {
-  "name": "watermark-js",
+  "name": "js-watermarker",
   "version": "1.0.0",
   "description": "create watermark tool lib",
   "keywords": [
     "watermark",
-    "watermarkjs",
+    "watermarker",
+    "watermark js",
     "水印",
     "ウォーターマーク"
   ],
@@ -12,18 +13,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/coder-monkey/watermark-js.git"
+    "url": "https://gitee.com/coder-monkey/js-watermarker.git"
   },
-  "homepage": "https://codermonkie.github.io/watermark-js/",
+  "homepage": "https://codermonkie.github.io/js-watermarker/",
   "files": [
     "dist"
   ],
-  "main": "./dist/watermark-js.umd.js",
-  "module": "./dist/watermark-js.es.js",
+  "main": "./dist/js-watermarker.umd.js",
+  "module": "./dist/js-watermarker.es.js",
   "exports": {
     ".": {
-      "import": "./dist/watermark-js.es.js",
-      "require": "./dist/watermark-js.umd.js"
+      "import": "./dist/js-watermarker.es.js",
+      "require": "./dist/js-watermarker.umd.js"
     }
   },
   "scripts": {

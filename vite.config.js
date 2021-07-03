@@ -30,7 +30,7 @@ export default ({ command, mode }) => {
       build: {
         lib: {
           entry: "./src/main.js",
-          name: "watermark-js",
+          name: "js-watermarker",
           formats: ["es", "cjs", "umd", "iife"],
         },
         outDir: "./dist",

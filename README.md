@@ -3,9 +3,9 @@
 ## 安装 | Install
 
 ```bash
-npm i watermark-js
+npm i js-watermarker
 # or
-yarn add watermark-js
+yarn add js-watermarker
 ```
 
 ---
@@ -13,7 +13,7 @@ yarn add watermark-js
 ## 使用 | Usage
 
 ```js
-import setWatermark from "watermark-js";
+import setWatermark from "js-watermarker";
 
 setWatermark({
   content: "@码路工人",
@@ -52,8 +52,8 @@ yarn preview
 
 在线示例
 
-[codermonkie.github.io/watermark-js](https://codermonkie.github.io/watermark-js/)
+[codermonkie.github.io/js-watermarker](https://codermonkie.github.io/js-watermarker/)
 
-[coder-monkey.gitee.io/watermark-js](https://coder-monkey.gitee.io/watermark-js/)
+[coder-monkey.gitee.io/js-watermarker](https://coder-monkey.gitee.io/js-watermarker/)
 
 ![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-3/1625269280266-image.png)
