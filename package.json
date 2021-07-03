@@ -1,9 +1,10 @@
 {
-  "name": "watermarker",
+  "name": "watermarke-js",
   "version": "1.0.0",
   "description": "create watermark tool lib",
   "keywords": [
     "watermark",
+    "watermarkjs",
     "水印",
     "ウォーターマーク"
   ],
@@ -11,9 +12,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/coder-monkey/watermarker.git"
+    "url": "https://gitee.com/coder-monkey/watermark-js.git"
   },
-  "homepage": "https://codermonkie.github.io/watermarker/",
+  "homepage": "https://codermonkie.github.io/watermark-js/",
   "files": [
     "dist"
   ],
