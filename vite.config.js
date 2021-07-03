@@ -11,6 +11,7 @@ import { resolve } from "path";
 export default ({ command, mode }) => {
   const baseConfig = {
     root: "./example",
+    base: "./",
     plugins: [vue()],
     resolve: {
       alias: {
