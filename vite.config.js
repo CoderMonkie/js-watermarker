@@ -2,7 +2,7 @@
  * @Description: vite config
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-06-30 20:35:57
- * @LastEditors: 码路工人<maonianyou@foxmail.com>
+ * @LastEditors: Archmage | 大法师
  */
 import { defineConfig, loadEnv, mergeConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -30,7 +30,7 @@ export default ({ command, mode }) => {
       build: {
         lib: {
           entry: "./src/main.js",
-          name: "js-watermarker",
+          name: "jswatermarker",
           formats: ["es", "cjs", "umd", "iife"],
         },
         outDir: "./dist",
