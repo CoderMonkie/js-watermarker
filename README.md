@@ -1,4 +1,4 @@
-# watermark
+# js-watermarker
 
 ## 安装 | Install
 
@@ -32,6 +32,9 @@ setWatermark({
   - 支持设置水印颜色、位置、倾斜角度及是否重复水印等
 - 可实时动态修改水印配置
 - 水印防删除
+- 可在线(示例地址)查看调整效果
+
+纯 js 实现，无任何其它依赖
 
 ## 查看 Demo | Example
 
@@ -48,12 +51,14 @@ npm run preview
 yarn preview
 ```
 
-![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-3/1625269445789-E3BFCDF9-02E9-4265-9A21-D1BF7714D37A.png)
+![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-5/1625414516479-image.png)
 
 在线示例
 
 [codermonkie.github.io/js-watermarker](https://codermonkie.github.io/js-watermarker/)
 
-[coder-monkey.gitee.io/js-watermarker](https://coder-monkey.gitee.io/js-watermarker/)
+~~[coder-monkey.gitee.io/js-watermarker](https://coder-monkey.gitee.io/js-watermarker/)~~
 
-![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-3/1625269280266-image.png)
+## 版权 | License
+
+MIT

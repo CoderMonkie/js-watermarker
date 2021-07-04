@@ -2,7 +2,7 @@
  * @Description: vite config
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-06-30 20:35:57
- * @LastEditors: Archmage | 大法师
+ * @LastEditors: 码路工人<maonianyou@foxmail.com>
  */
 import { defineConfig, loadEnv, mergeConfig } from "vite";
 import vue from "@vitejs/plugin-vue";

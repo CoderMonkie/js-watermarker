@@ -21,7 +21,7 @@ export default {
     /** 字体相关 */
     fontFamily:
       '"PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"MS Gothic","\\5b8b\\4f53",sans-serif,tahoma',
-    fontSize: "16px",
+    fontSize: 16,
     /** 倾斜 */
     rotate: 0,
     /** 多行文本时用于累加的行高 */

@@ -9,3 +9,4 @@ git remote add github git@github.com:CoderMonkie/js-watermarker.git
 git pull github
 git pull gitee
 git push --force github HEAD:watermark-pages
+git push --force gitee HEAD:watermark-pages
