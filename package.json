@@ -33,9 +33,9 @@
     "build:demo": "vite build --mode demo",
     "preview": "npm run build:demo && vite preview",
     "deploy": "npm run build:demo && deploy.bat",
-    "publish:patch": "npm run build && npm version patch && npm publish && git push",
-    "publish:minor": "npm run build && npm version minor && npm publish && git push",
-    "publish:major": "npm run build && npm version major && npm publish && git push"
+    "publish:patch": "npm version patch && npm run build && npm publish && git push",
+    "publish:minor": "npm version minor && npm run build && npm publish && git push",
+    "publish:major": "npm version major && npm run build && npm publish && git push"
   },
   "dependencies": {},
   "devDependencies": {
