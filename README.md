@@ -90,7 +90,7 @@ npm run preview
 yarn preview
 ```
 
-![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-5/1625414516479-image.png)
+![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-5/1625468749708-image.png)
 
 在线示例
 
