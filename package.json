@@ -1,7 +1,7 @@
 {
   "name": "js-watermarker",
   "version": "1.0.1",
-  "description": "create watermark tool lib",
+  "description": "Make it easier to  create watermark. Before get your own wartermark, you can preview it on the demo-page.",
   "keywords": [
     "watermark",
     "watermarker",
