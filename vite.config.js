@@ -4,15 +4,25 @@
  * @Date: 2021-06-30 20:35:57
  * @LastEditors: 码路工人<maonianyou@foxmail.com>
  */
-import { defineConfig, loadEnv, mergeConfig } from "vite";
+import { defineConfig, mergeConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import viteCompression from "vite-plugin-compression";
 import { resolve } from "path";
 
 export default ({ command, mode }) => {
   const baseConfig = {
     root: "./example",
     base: "./",
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      viteCompression({
+        verbose: true,
+        threshold: 1024 * 5,
+        algorithm: "gzip",
+        ext: ".gz",
+        deleteOriginFile: true,
+      }),
+    ],
     resolve: {
       alias: {
         "@": resolve(__dirname, "src"),
