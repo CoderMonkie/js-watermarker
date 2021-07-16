@@ -13,7 +13,7 @@ export default {
     /** fillText 的位置 */
     top: 20,
     left: 20,
-    /** 可以是颜色，也可以是渐变等（@see canvas的fillSttyle） */
+    /** 可以是颜色，也可以是渐变等（@see canvas.fillStyle） */
     color: "rgba(150, 150, 150, .15)",
     /** 当指定的颜色已包含 alpha 值时，需将这里的 alpha 设为 1 */
     alpha: 1,
