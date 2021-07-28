@@ -20,7 +20,7 @@ export default ({ command, mode }) => {
         threshold: 1024 * 5,
         algorithm: "gzip",
         ext: ".gz",
-        deleteOriginFile: true,
+        deleteOriginFile: false,
       }),
     ],
     resolve: {
