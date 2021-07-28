@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/coder-monkey/js-watermarker.git"
+    "url": "https://github.com/CoderMonkie/js-watermarker.git"
   },
   "homepage": "https://codermonkie.github.io/js-watermarker/",
   "files": [
