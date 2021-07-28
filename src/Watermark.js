@@ -60,8 +60,8 @@ class Watermark {
     div.style.zIndex = "100000";
 
     // 完整覆盖指定对象
-    div.style.width = options.targetElement.clientWidth + "px";
-    div.style.height = options.targetElement.clientHeight + "px";
+    div.style.width = options.targetElement.scrollWidth + "px";
+    div.style.height = options.targetElement.scrollHeight + "px";
     div.style.top = options.targetElement.offsetTop + "px";
     div.style.left = options.targetElement.offsetLeft + "px";
 

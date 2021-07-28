@@ -45,8 +45,12 @@ const createAndAppend = (options) => {
     ...options,
     elementId,
   });
-  // 添加到同级路径
-  options.targetElement.parentElement.appendChild(wm);
+  // 添加到同级路径或默认的body下
+  const container =
+    options.targetElement === document.body
+      ? document.body
+      : options.targetElement.parentElement;
+  container.appendChild(wm);
 
   // 重新 | 配置观察器
   observer = new MutationObserver((mutationsList, observer) => {
