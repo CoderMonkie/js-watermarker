@@ -109,3 +109,8 @@ yarn preview
 ## 版权 | License | ライセンス
 
 MIT
+
+---
+
+TODO
+[ ]refactor and more features (v2.0)
