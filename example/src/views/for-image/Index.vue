@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-07-28 23:12:56
- * @LastEditors: 码路工人<maonianyou@foxmail.com>
+ * @LastEditors: Archmage | 大法师 <maonianyou@pay.media>
 -->
 <template>
   <div class="tab-for-image">
@@ -212,11 +212,10 @@
     </el-form>
 
     <section class="page-section__setting-json">
+      <pre>targetElement: &lt;HTMLElement&gt;[states.watermarkRef?.$el]</pre>
       <span>&nbsp;&nbsp;The Setting JSON</span>
       <hr />
-      <pre
-        >{{ JSON.stringify(settingJson, null, 4) }}
-      </pre>
+      <pre>{{ JSON.stringify(computedOptions, null, 4) }}</pre>
     </section>
   </div>
 </template>
@@ -288,11 +287,11 @@ export default {
       };
     });
 
-    const settingJson = computed(() => {
-      const copy = JSON.parse(JSON.stringify(computedOptions.value));
-      copy.targetElement = "<HTMLElement>[states.watermarkRef?.$el]";
-      return copy;
-    });
+    // const settingJson = computed(() => {
+    //   const copy = JSON.parse(JSON.stringify(computedOptions.value));
+    //   copy.targetElement = "<HTMLElement>[states.watermarkRef?.$el]";
+    //   return copy;
+    // });
 
     const handleOptionsChange = () => {
       marker.setOption(computedOptions.value);
@@ -320,7 +319,7 @@ export default {
       ...toRefs(states),
       handleOptionsChange,
       onImageLoad,
-      settingJson,
+      computedOptions,
     };
   },
 };

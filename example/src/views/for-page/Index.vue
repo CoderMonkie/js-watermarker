@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-07-28 23:13:15
- * @LastEditors: 码路工人<maonianyou@foxmail.com>
+ * @LastEditors: Archmage | 大法师 <maonianyou@pay.media>
 -->
 <template>
   <div class="tab-for-page" ref="watermarkRef">
@@ -235,10 +235,13 @@
     </section>
 
     <section class="page-section__setting-json">
+      <pre>
+targetElement: &lt;HTMLElement&gt;[states.watermarkRef]; 
+      </pre>
       生成的配置对象：
       <hr />
       <pre
-        >{{ JSON.stringify(settingJson, null, 4) }}
+        >{{ JSON.stringify(computedOptions, null, 4) }}
       </pre>
     </section>
   </div>
@@ -317,12 +320,6 @@ export default {
       };
     });
 
-    const settingJson = computed(() => {
-      const copy = JSON.parse(JSON.stringify(computedOptions.value));
-      copy.targetElement = "<HTMLElement>[states.watermarkRef]";
-      return copy;
-    });
-
     const toggleWatermark = (flag) => {
       toggleAppendTo(flag ? states.formData.checkList : []);
     };
@@ -358,7 +355,7 @@ export default {
     return {
       ...toRefs(states),
       handleOptionsChange,
-      settingJson,
+      computedOptions,
       toggleWatermark,
       toggleAppendTo,
     };
