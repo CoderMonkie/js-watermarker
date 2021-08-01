@@ -1,5 +1,15 @@
 # js-watermarker
 
+👏 版本更新 Version Up👏
+
+> v1.x 仅支持设一个水印（可以更新水印的设置）  
+> v1.x only one watermark can be set (can update setting options)  
+> v1.x 1 つだけウォーターマーク設定できる
+>
+> v2.x 支持创建多个实例，分别给页面多多个元素设置不同水印  
+> v2.x support multi-instance to set different wartermarks for different elements  
+> v2.x 複数インスタンスの作成で、複数のウォーターマークを追加できる
+
 ## 安装 | Install | インストール
 
 ```bash
@@ -12,12 +22,79 @@ yarn add js-watermarker
 
 ## 使用 | Usage | 使い方
 
+### v1.x
+
 ```js
 import setWatermark from "js-watermarker";
 
 setWatermark({
   content: "@码路工人",
 });
+```
+
+### v2.x
+
+key code:
+
+```js
+import watermarker from "js-watermarker";
+
+// onMounted
+marker = watermarker.init(watermarkRef);
+marker.setOption(options);
+```
+
+In Vue3 project:
+
+```vue
+<template>
+  <div ref="watermarkRef">
+    <!-- maybe have some contents here -->
+  </div>
+</template>
+
+<script>
+import watermarker from "js-watermarker";
+
+export default {
+  name: "ComponentName",
+  setup() {
+    let marker = null;
+    const states = reactive({
+      watermarkRef: null,
+
+      // could be no-reactive
+      options: {
+        // content could be String or Array
+        content: ['Hello World', 'Wartermark Demo']
+        // textStyle object
+        textStyle: {
+          left: 20,
+          top: 100,
+          rotate: -10,
+          align: "left",
+          fontSize: 16,
+          lineHeight: 25,
+          color: "#fee0b9",
+          alpha: 1,
+        },
+        // imageStyle object
+        imageStyle: {
+          width: 400,
+          height: 300,
+          position: "left top",
+          repeat: "repeat",
+        },
+      },
+    });
+  },
+  onMounted(() => {
+    marker = watermarker.init(states.watermarkRef);
+
+    marker.setOption(states.options);
+  })
+};
+</script>
 ```
 
 ## 配置对象 | API | 設定項目明細
@@ -29,17 +106,25 @@ setWatermark({
 > 設定項目明細は下記 オンライン サンプル ページ 参照:  
 > [Demo](https://codermonkie.github.io/js-watermarker)
 
-### Properties
+### Methods
 
-| 属性名 Property 属性      | 说明 Note 　説明   | 类型 Type タイプ・型 | 是否必须　 Required 　必須 | 可选值 Values 設定値 | 默认值 Default デフォルト値 |
-| ------------------------- | ------------------ | -------------------- | -------------------------- | -------------------- | --------------------------- |
-| content                   | 水印文字内容       | String / Array       | Required                   |                      |                             |
-| targetElement             | 要加水印的对象元素 | null / HTMLElement   | Optional                   |                      | document.body               |
-| [textStyle](#textStyle)   | 水印文字的相关属性 | Object               | Optional                   |                      |                             |
-| [imageStyle](#imageStyle) | 水印图片的相关属性 | Object               | Optional                   |                      |                             |
-|                           |                    |                      |                            |                      |
+| 方法名 Method | 说明 Description                                                          | 参数 Parameters             | 返回值 Returns                              |
+| ------------- | ------------------------------------------------------------------------- | --------------------------- | ------------------------------------------- |
+| init          | 初始化获取实例<br>Initialize to get instance                              | targetElement: HTMLElement  | Watermarker 实例<br>instance of Watermarker |
+| setOption     | 设置或更新水印<br>show wartermark with options specified, also for update | [options](#options): Object | -                                           |
+| clear         | 清除水印<br>remove watermark                                              | -                           | -                                           |
 
-#### textStyle<a id="textStyle"></a>
+### options properties <a id="options"></a>
+
+| 属性名 Property 属性                 | 说明 Note 　説明       | 类型 Type タイプ・型 | 是否必须　 Required 　必須 | 可选值 Values 設定値 | 默认值 Default デフォルト値 |
+| ------------------------------------ | ---------------------- | -------------------- | -------------------------- | -------------------- | --------------------------- |
+| content                              | 水印文字内容           | String / Array       | Required                   |                      |                             |
+| ~~targetElement~~<br>(removed in v2) | ~~要加水印的对象元素~~ | null / HTMLElement   | Optional                   |                      | document.body               |
+| [textStyle](#textStyle)              | 水印文字的相关属性     | Object               | Optional                   |                      |                             |
+| [imageStyle](#imageStyle)            | 水印图片的相关属性     | Object               | Optional                   |                      |                             |
+|                                      |                        |                      |                            |                      |
+
+#### textStyle properties <a id="textStyle"></a>
 
 | 属性名 Property 属性 | 说明 Note 　説明                                                                                            | 类型 Type タイプ・型 | 是否必须　 Required 　必須 | 可选值 Values 設定値 | 默认值 Default デフォルト値                                                                        |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------- | -------------------------- | -------------------- | -------------------------------------------------------------------------------------------------- |
@@ -54,7 +139,7 @@ setWatermark({
 | lineHeight           | 多行文本时用于累加的行高                                                                                    | Integer              | Optional                   |                      | 25                                                                                                 |
 |                      |                                                                                                             |                      |                            |                      |
 
-#### imageStyle<a id="imageStyle"></a>
+#### imageStyle properties <a id="imageStyle"></a>
 
 | 属性名 Property 属性 | 说明 Note 　説明 | 类型 Type タイプ・型 | 是否必须　 Required 　必須 | 可选值 Values 設定値         | 默认值 Default デフォルト値 |
 | -------------------- | ---------------- | -------------------- | -------------------------- | ---------------------------- | --------------------------- |
@@ -80,6 +165,7 @@ Add watermark to page/element
 - 可实时动态修改水印配置
 - 水印防删除
 - 可在线(示例地址)查看调整效果
+- v2.x 支持给多个元素分别设置不同水印
 
 纯 js 实现，无任何其它依赖
 
@@ -112,5 +198,6 @@ MIT
 
 ---
 
-TODO
-[ ]refactor and more features (v2.0)
+TODO  
+[x] refactor and multi-instance support in v2.0 (issue#2)  
+[ ] query selector support for init method in v2.0 (issue#3)
