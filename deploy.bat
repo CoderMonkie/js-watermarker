@@ -1,6 +1,6 @@
 cd example/dist
 git init
-git config user.name "码路工人"
+git config user.name CoderMonkie
 git config user.email maonianyou@gmail.com
 git add -A
 git commit -m deploy 
