@@ -17,6 +17,30 @@
         label-width="200px"
         :label-position="labelPosition"
       >
+        <el-form-item label="">
+          <el-radio-group
+            v-model="formData.hasWatermark"
+            size="small"
+            @change="toggleWatermark"
+          >
+            <el-radio :label="false">无水印 No Watermark</el-radio>
+            <el-radio :label="true">加水印 Add Watermark</el-radio>
+          </el-radio-group>
+          <div>以下两项都勾选即多实例 Check Both below for Multi-Instance</div>
+          <el-checkbox-group
+            v-model="formData.checkList"
+            :disabled="!formData.hasWatermark"
+            @change="toggleAppendTo"
+          >
+            <el-checkbox :label="undefined"
+              >加水印到页面 Add to the full page</el-checkbox
+            >
+            <el-checkbox :label="watermarkRef"
+              >加水印到标签页 Add to this Tab</el-checkbox
+            >
+          </el-checkbox-group>
+        </el-form-item>
+
         <el-form-item label="水印文字">
           <el-input
             v-model="formData.content"
@@ -221,11 +245,10 @@
 </template>
 
 <script>
-import setWatermark from "../../../../src/main.js";
+import watermarker from "../../../../src/main.js";
 import {
   computed,
   nextTick,
-  onActivated,
   onBeforeUnmount,
   onMounted,
   reactive,
@@ -237,12 +260,17 @@ import { getToday } from "e@/utils/utils.js";
 export default {
   name: "ForPage",
   setup(props, ctx) {
+    const markers = [];
     const states = reactive({
       labelPosition: "right",
       // ref of target element
       watermarkRef: null,
       formData: {
-        // textStyle
+        // fields for interaction
+        hasWatermark: true,
+        checkList: [undefined],
+        // fields in setting options
+        // options.textStyle
         content: `CoderMonkey | 码路工人,快乐编程 · 佛系开发, ${getToday()}`,
         textAlign: "left",
         textLeft: 20,
@@ -252,7 +280,7 @@ export default {
         rotate: -10,
         textColor: "#fee0b9",
         textOpacity: 1,
-        // imageStyle
+        // options.imageStyle
         repeat: "repeat",
         imagePositionX: "left",
         imagePositionY: "top",
@@ -268,7 +296,6 @@ export default {
     const computedOptions = computed(() => {
       return {
         content: computedContent.value,
-        targetElement: states.watermarkRef,
         textStyle: {
           /** fillText 的位置 */
           left: parseInt(states.formData.textLeft),
@@ -296,12 +323,26 @@ export default {
       return copy;
     });
 
+    const toggleWatermark = (flag) => {
+      toggleAppendTo(flag ? states.formData.checkList : []);
+    };
+
+    const toggleAppendTo = (checkedArr) => {
+      markers.forEach((m) => m.clear());
+      markers.length = 0;
+      checkedArr.forEach((n) => {
+        const addNewMark = watermarker.init(n);
+        addNewMark.setOption(computedOptions.value);
+        markers.push(addNewMark);
+      });
+    };
+
     const onWindowResize = () => {
       states.labelPosition = document.body.clientWidth > 1200 ? "right" : "top";
     };
 
     const handleOptionsChange = () => {
-      setWatermark(computedOptions.value);
+      toggleAppendTo(states.formData.checkList);
     };
 
     onMounted(() => {
@@ -311,16 +352,15 @@ export default {
 
     onBeforeUnmount(() => {
       window.removeEventListener("resize", onWindowResize);
-    });
-
-    onActivated(() => {
-      console.log("onActivated");
+      toggleWatermark();
     });
 
     return {
       ...toRefs(states),
       handleOptionsChange,
       settingJson,
+      toggleWatermark,
+      toggleAppendTo,
     };
   },
 };

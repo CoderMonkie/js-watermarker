@@ -222,7 +222,7 @@
 </template>
 
 <script>
-import setWatermark from "../../../../src/main.js";
+import watermarker from "../../../../src/main.js";
 import { toRefs, reactive } from "@vue/reactivity";
 
 import SettingForm from "e@/components/SettingForm.vue";
@@ -234,6 +234,7 @@ export default {
     SettingForm,
   },
   setup() {
+    let marker = null;
     const states = reactive({
       labelPosition: "right",
       // ref of target element
@@ -294,10 +295,11 @@ export default {
     });
 
     const handleOptionsChange = () => {
-      setWatermark(computedOptions.value);
+      marker.setOption(computedOptions.value);
     };
 
     const onImageLoad = () => {
+      marker = watermarker.init(states.watermarkRef.$el);
       handleOptionsChange();
     };
 
@@ -311,6 +313,7 @@ export default {
 
     onBeforeUnmount(() => {
       window.removeEventListener("resize", onWindowResize);
+      marker && marker.clear();
     });
 
     return {
