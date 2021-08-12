@@ -99,12 +99,6 @@ export const setWatermark = (options) => {
   // 合并配置内容
   const customOptions = mixOptions(options, { ...defaultOptions });
 
-  const handleResize = () => {
-    createAndAppend(customOptions);
-  };
-  // 清除 resize 监听
-  window.removeEventListener("resize", handleResize);
-
   // 检查添加位置
   if (!customOptions.targetElement) {
     customOptions.targetElement = document.body;
@@ -115,9 +109,6 @@ export const setWatermark = (options) => {
   }
 
   createAndAppend(customOptions);
-
-  // 检测到窗口 resize 时重设
-  window.addEventListener("resize", handleResize);
 };
 
 export default setWatermark;
