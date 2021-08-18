@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-07-28 23:13:15
- * @LastEditors: Archmage | 大法师 <maonianyou@pay.media>
+ * @LastEditors: 码路工人<maonianyou@foxmail.com>
 -->
 <template>
   <div class="tab-for-page" ref="watermarkRef">
@@ -325,7 +325,10 @@ export default {
     };
 
     const toggleAppendTo = (checkedArr) => {
-      markers.forEach((m) => m.clear());
+      markers.forEach((m) => {
+        m.clear();
+        m = null;
+      });
       markers.length = 0;
       checkedArr.forEach((n) => {
         const addNewMark = watermarker.init(n);

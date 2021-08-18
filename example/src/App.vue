@@ -1,3 +1,9 @@
+<!--
+ * @Description: 示例App
+ * @Autor: 码路工人<maonianyou@foxmail.com>
+ * @Date: 2021-07-16 11:44:31
+ * @LastEditors: 码路工人<maonianyou@foxmail.com>
+-->
 <template>
   <div class="app-container">
     <section class="page-section__header flex flex-column align-center">

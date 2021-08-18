@@ -48,5 +48,14 @@ export default ({ command, mode }) => {
     });
   }
 
+  // 指定开发用port
+  if (mode === "development") {
+    config = mergeConfig(config, {
+      server: {
+        port: 5001,
+      },
+    });
+  }
+
   return defineConfig(config);
 };
