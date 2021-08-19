@@ -219,8 +219,8 @@ export default {
       markers.push(watermarker.init(states.watermarkRef2));
       markers.push(watermarker.init(states.watermarkRef3));
 
-      states.watermarkRef1.setAttribute("src", "/images/clover.png");
-      states.watermarkRef2.setAttribute("src", "/images/tokyo-sky-tree.jpg");
+      states.watermarkRef1.setAttribute("src", "./images/clover.png");
+      states.watermarkRef2.setAttribute("src", "./images/tokyo-sky-tree.jpg");
       states.watermarkRef3.setAttribute(
         "src",
         "https://gitee.com/Coding-Worker/picture/raw/master/2021-7-28/1627448089888-tokyo-sky-tree.jpg"
