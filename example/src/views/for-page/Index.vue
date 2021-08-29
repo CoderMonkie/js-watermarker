@@ -231,6 +231,15 @@
             RGBA)时，此处的透明度会同时起作用，建议使用默认值 1</span
           >
         </el-form-item>
+
+        <el-divider content-position="left">
+          <h3>z-index</h3>
+        </el-divider>
+
+        <el-form-item>
+          <el-input v-model="formData.zIndex" @keyup="ensureNumber('zIndex')"></el-input>
+        </el-form-item>        
+
       </el-form>
     </section>
 
@@ -255,13 +264,19 @@ import {
   onBeforeUnmount,
   onMounted,
   reactive,
-  ref,
   toRefs,
+  watch,
 } from "vue";
 import { getToday } from "e@/utils/utils.js";
 
 export default {
   name: "ForPage",
+  props: {
+    showConsoleLog: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup(props, ctx) {
     const markers = [];
     const states = reactive({
@@ -289,6 +304,8 @@ export default {
         imagePositionY: "top",
         imageWidth: 400,
         imageHeight: 300,
+        //
+        zIndex: 999,
       },
     });
     const computedContent = computed(() => states.formData.content.split(","));
@@ -317,10 +334,21 @@ export default {
           position: computedImagePosition.value,
           repeat: states.formData.repeat,
         },
-        zIndex: 999, // 可选，默认10000
-        debug: true,
+        zIndex: states.formData.zIndex, // 可选，默认10000
+        debug: props.showConsoleLog,
       };
     });
+
+    const ensureNumber = (field) => {
+      const val = states.formData[field];
+      if (val == null || val === '') return;
+      const inputVal = parseInt(states.formData[field].toString().replace(/\D/g, ''));
+      states.formData[field] = Number.isNaN(inputVal) ? 0 : inputVal;
+    }
+
+    watch(() => props.showConsoleLog, (debug) => {
+      toggleWatermark(states.formData.hasWatermark);
+    })
 
     const toggleWatermark = (flag) => {
       toggleAppendTo(flag ? states.formData.checkList : []);
@@ -361,6 +389,7 @@ export default {
       ...toRefs(states),
       handleOptionsChange,
       computedOptions,
+      ensureNumber,
       toggleWatermark,
       toggleAppendTo,
     };

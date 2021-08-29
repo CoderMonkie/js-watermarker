@@ -5,6 +5,12 @@
  * @LastEditors: 码路工人<maonianyou@foxmail.com>
 -->
 <template>
+  <div class="static-config">
+    <el-checkbox v-model="showConsoleLog">
+      <span>console log</span>
+    </el-checkbox>
+  </div>
+
   <div class="app-container">
     <section class="page-section__header flex flex-column align-center">
       <h1>js-watermarker</h1>
@@ -22,7 +28,7 @@
     <section class="page-section__nav-tabs">
       <el-tabs v-model="activeTab">
         <el-tab-pane label="For Page" name="page">
-          <ForPage v-if="activeTab === 'page'" />
+          <ForPage v-if="activeTab === 'page'" :show-console-log="showConsoleLog" />
         </el-tab-pane>
         <el-tab-pane label="For Image" name="image">
           <ForImage v-if="activeTab === 'image'" />
@@ -45,18 +51,32 @@ export default {
     ForImage,
   },
   setup() {
-    const state = reactive({
+    const states = reactive({
       activeTab: "page",
+      showConsoleLog: false,
     });
 
     return {
-      ...toRefs(state),
+      ...toRefs(states),
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+  .static-config {
+    position: sticky;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    height: auto;
+    padding: 10px;
+    background: #f6f6f6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #d3d3d3;
+    z-index: 10;
+  }
+
 .app-container {
   padding: 20px 30px;
   min-width: 800px;
