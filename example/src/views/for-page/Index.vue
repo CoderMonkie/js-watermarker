@@ -318,6 +318,7 @@ export default {
           repeat: states.formData.repeat,
         },
         zIndex: 999, // 可选，默认10000
+        debug: true,
       };
     });
 

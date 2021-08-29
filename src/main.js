@@ -163,12 +163,13 @@ class Watermarker {
       { ...options, targetElement: this.targetElement },
       { ...defaultOptions() }
     );
+    this.options.debug && console.log('final options: ', this.options)
 
     this.createAndAppend();
   }
 
   setOption(options, reset = false) {
-    console.log(options);
+    options.debug && console.log('specified options: ', options);
     if (this.targetElement instanceof HTMLImageElement) {
       this.setForImage(options, reset);
     } else {
@@ -202,11 +203,11 @@ class Watermarker {
           mutation.type === "childList" &&
           [].some.call(mutation.removedNodes, (n) => n === this.watermark)
         ) {
-          console.log("The watermark node has been removed.");
+          this.options.debug && console.log("The watermark node has been removed.");
           this.createAndAppend();
           break;
         } else if (mutation.type === "attributes") {
-          console.log(
+          this.options.debug && console.log(
             "The " + mutation.attributeName + " attribute was modified."
           );
           this.createAndAppend();

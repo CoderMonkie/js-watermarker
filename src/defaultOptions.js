@@ -36,6 +36,7 @@ const defaultOptions = (isImage = false) => {
       repeat: isImage ? "no-repeat" : "repeat",
     },
     zIndex: 10000,
+    debug: false,
   };
 };
 
