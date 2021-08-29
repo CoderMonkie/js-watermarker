@@ -317,6 +317,7 @@ export default {
           position: computedImagePosition.value,
           repeat: states.formData.repeat,
         },
+        zIndex: 999, // 可选，默认10000
       };
     });
 

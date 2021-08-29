@@ -26,6 +26,13 @@ export function mixOptions(source, target) {
           .filter((n) => !!n);
       }
 
+      if (p === 'zIndex') {
+        const zIndex = source.zIndex;
+        if (typeof zIndex !== 'number' || Number.isNaN(zIndex) || zIndex < 0) {
+          source[p] = target[p];
+        }
+      }
+
       const valS = source[p];
 
       if (toString.call(valS) === "[object Object]") {

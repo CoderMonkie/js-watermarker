@@ -57,7 +57,7 @@ class Watermark {
     div.id = options.elementId;
     div.style.pointerEvents = "none";
     div.style.position = "absolute";
-    div.style.zIndex = "100000";
+    div.style.zIndex = options.zIndex;
 
     // 完整覆盖指定对象
     div.style.width = options.targetElement.scrollWidth + "px";

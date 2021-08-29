@@ -35,6 +35,7 @@ const defaultOptions = (isImage = false) => {
       position: "left top",
       repeat: isImage ? "no-repeat" : "repeat",
     },
+    zIndex: 10000,
   };
 };
 
