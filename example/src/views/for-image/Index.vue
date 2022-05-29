@@ -1,5 +1,5 @@
 <!--
- * @Description: 
+ * @Description:
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-07-28 23:12:56
  * @LastEditors: Archmage | 大法师 <maonianyou@pay.media>
@@ -224,14 +224,10 @@
 import watermarker from "../../../../src/main.js";
 import { toRefs, reactive } from "@vue/reactivity";
 
-import SettingForm from "e@/components/SettingForm.vue";
 import { computed, onMounted, onBeforeUnmount } from "@vue/runtime-core";
 
 export default {
   name: "ForImage",
-  components: {
-    SettingForm,
-  },
   setup() {
     let marker = null;
     const states = reactive({
