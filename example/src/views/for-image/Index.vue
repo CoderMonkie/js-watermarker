@@ -1,246 +1,149 @@
 <!--
- * @Description: 
+ * @Description: 图片水印示例页
  * @Autor: 码路工人<maonianyou@foxmail.com>
  * @Date: 2021-07-28 23:12:56
- * @LastEditors: Archmage | 大法师 <maonianyou@pay.media>
+ * @LastEditors: 码路工人<maonianyou@foxmail.com>
 -->
 <template>
   <div class="tab-for-image">
-    <el-image
-      src="https://gitee.com/Coding-Worker/picture/raw/master/2021-7-28/1627448089888-tokyo-sky-tree.jpg"
-      ref="watermarkRef"
-      @load="onImageLoad"
-    ></el-image>
+    <Quote text="Case 1：Same origin image | no-repeat" class="case-title" />
+    <div class="case-1-block flex flex-column align-center">
+      <el-button @click="showSettingDialog(1)"
+        >点我修改水印配置 | Click me to set watermark</el-button
+      >
+      <img ref="watermarkRef1" class="el-image__inner" />
+      <DialogConfigSetting
+        v-if="case1DialogVisible"
+        v-model:visible="case1DialogVisible"
+        v-model:config="configCase1"
+        @close="handleSetting(0, true)"
+      />
+    </div>
+
+    <Quote text="Case 2：Same origin image | repeat" class="case-title" />
+    <div class="case-2-block flex flex-column align-center">
+      <el-button @click="showSettingDialog(2)"
+        >点我修改水印配置 | Click me to set watermark</el-button
+      >
+      <img ref="watermarkRef2" class="el-image__inner" />
+      <DialogConfigSetting
+        v-if="case2DialogVisible"
+        v-model:visible="case2DialogVisible"
+        v-model:config="configCase2"
+        @close="handleSetting(1, true)"
+      />
+    </div>
+
+    <Quote text="Case 3：Cross origin image | no-repeat" class="case-title" />
+    <div class="case-3-block flex flex-column align-center">
+      <el-button @click="showSettingDialog(3)"
+        >点我修改水印配置 | Click me to set watermark</el-button
+      >
+      <img ref="watermarkRef3" class="el-image__inner" />
+      <DialogConfigSetting
+        v-if="case3DialogVisible"
+        v-model:visible="case3DialogVisible"
+        v-model:config="configCase3"
+        @close="handleSetting(2, true)"
+      />
+    </div>
 
     <el-divider></el-divider>
 
-    <el-form
-      label-suffix="："
-      label-width="200px"
-      :label-position="labelPosition"
-    >
-      <el-form-item label="水印文字">
-        <el-input
-          v-model="formData.content"
-          placeholder="@码路工人"
-          size="small"
-          @change="handleOptionsChange"
-        >
-        </el-input>
-      </el-form-item>
-
-      <el-divider content-position="left">
-        <h3>imageStyle</h3>
-      </el-divider>
-
-      <el-form-item label="是否重复">
-        <el-radio-group
-          v-model="formData.repeat"
-          size="small"
-          @change="handleOptionsChange"
-        >
-          <el-radio label="repeat">是</el-radio>
-          <el-radio label="no-repeat">否</el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item label="水印位置">
-        <div>
-          横：
-          <el-radio-group
-            v-model="formData.imagePositionX"
-            size="small"
-            @change="handleOptionsChange"
-          >
-            <el-radio label="left">左</el-radio>
-            <el-radio label="center">中</el-radio>
-            <el-radio label="right">右</el-radio>
-          </el-radio-group>
-        </div>
-        <div>
-          纵：
-          <el-radio-group
-            v-model="formData.imagePositionY"
-            size="small"
-            @change="handleOptionsChange"
-          >
-            <el-radio label="top">上</el-radio>
-            <el-radio label="center">中</el-radio>
-            <el-radio label="bottom">下</el-radio>
-          </el-radio-group>
-        </div>
-      </el-form-item>
-
-      <el-form-item label="水印尺寸">
-        <span style="display: inline-block; width: 120px">
-          <el-input
-            type="number"
-            id="imageWidth"
-            :input-style="{ textAlign: 'right' }"
-            v-model="formData.imageWidth"
-            @change="handleOptionsChange"
-          >
-            <template v-slot:prefix> Width: </template>
-          </el-input>
-        </span>
-        <span style="display: inline-block; width: 120px">
-          <el-input
-            type="number"
-            id="imageHeight"
-            :input-style="{ textAlign: 'right' }"
-            v-model="formData.imageHeight"
-            @change="handleOptionsChange"
-          >
-            <template v-slot:prefix> Height: </template>
-          </el-input>
-        </span>
-      </el-form-item>
-
-      <el-divider content-position="left">
-        <h3>textStyle</h3>
-      </el-divider>
-
-      <el-form-item label="文字排版">
-        <el-radio-group
-          border
-          v-model="formData.textAlign"
-          size="small"
-          @change="handleOptionsChange"
-        >
-          <el-radio label="left">左</el-radio>
-          <el-radio label="right">右</el-radio>
-        </el-radio-group>
-        <span style="margin-left: 50px">
-          <span style="margin-right: 10px">文字定位</span>
-          <span style="display: inline-block; width: 120px">
-            <el-input
-              v-model="formData.textLeft"
-              type="number"
-              :min="0"
-              :input-style="{ textAlign: 'right' }"
-              @change="handleOptionsChange"
-            >
-              <template v-slot:prefix> Left: </template>
-            </el-input>
-          </span>
-          <span style="display: inline-block; width: 120px">
-            <el-input
-              v-model="formData.textTop"
-              type="number"
-              :min="0"
-              :input-style="{ textAlign: 'right' }"
-              @change="handleOptionsChange"
-            >
-              <template v-slot:prefix> Top: </template>
-            </el-input>
-          </span>
-        </span>
-        <div></div>
-      </el-form-item>
-
-      <el-form-item label="字体大小">
-        <el-input-number
-          v-model="formData.fontSize"
-          :min="10"
-          :max="48"
-          :step="1"
-          step-strictly
-          :controls="false"
-          @change="handleOptionsChange"
-        ></el-input-number>
-        <span class="form-item__tip font-size-tip"
-          >10&nbsp;~&nbsp;48&nbsp;(step 1)</span
-        >
-      </el-form-item>
-
-      <el-form-item label="多行文本时用于累加的行高">
-        <el-input-number
-          v-model="formData.lineHeight"
-          :min="15"
-          :max="60"
-          :step="1"
-          step-strictly
-          :controls="false"
-          @change="handleOptionsChange"
-        ></el-input-number>
-        <span class="form-item__tip font-size-tip"
-          >15&nbsp;~&nbsp;60&nbsp;(step 1)</span
-        >
-      </el-form-item>
-
-      <el-form-item label="文字倾斜">
-        <el-input-number
-          v-model="formData.rotate"
-          :min="-360"
-          :max="360"
-          :step="5"
-          step-strictly
-          :controls="false"
-          @change="handleOptionsChange"
-        ></el-input-number>
-        <span class="form-item__tip rotate-tip"
-          >-360&nbsp;~&nbsp;360&nbsp;(step 5)</span
-        >
-      </el-form-item>
-
-      <el-form-item label="颜色">
-        <el-color-picker
-          v-model="formData.textColor"
-          show-alpha
-          color-format="hex"
-          @change="handleOptionsChange"
-        ></el-color-picker>
-      </el-form-item>
-      <el-form-item label="透明度">
-        <el-input-number
-          v-model="formData.textOpacity"
-          :min="0.01"
-          :max="1"
-          :step="0.01"
-          step-strictly
-          :controls="false"
-          @change="handleOptionsChange"
-        ></el-input-number>
-        <span class="form-item__tip text-opacity-tip"
-          >0.01&nbsp;~&nbsp;1&nbsp;(step 0.01)</span
-        >
-        <span class="form-item__tip text-opacity-tip">
-          &gt;&gt;&nbsp;当颜色中使用了透明度(即
-          RGBA)时，此处的透明度会同时起作用，建议使用默认值 1</span
-        >
-      </el-form-item>
-    </el-form>
-
-    <section class="page-section__setting-json">
+    <!-- <section class="page-section__setting-json">
       <pre>targetElement: &lt;HTMLElement&gt;[states.watermarkRef?.$el]</pre>
       <span>&nbsp;&nbsp;The Setting JSON</span>
       <hr />
       <pre>{{ JSON.stringify(computedOptions, null, 4) }}</pre>
-    </section>
+    </section> -->
   </div>
 </template>
 
 <script>
 import watermarker from "../../../../src/main.js";
 import { toRefs, reactive } from "@vue/reactivity";
+import { computed, onMounted, onBeforeUnmount } from "@vue/runtime-core";
 
 import SettingForm from "e@/components/SettingForm.vue";
-import { computed, onMounted, onBeforeUnmount } from "@vue/runtime-core";
+import Quote from "e@/components/quote.vue";
+import DialogConfigSetting from "./DialogConfigSetting.vue";
 
 export default {
   name: "ForImage",
   components: {
     SettingForm,
+    Quote,
+    DialogConfigSetting,
   },
   setup() {
-    let marker = null;
+    // let marker = null;
+    const markers = [];
     const states = reactive({
       labelPosition: "right",
       // ref of target element
-      watermarkRef: null,
+      watermarkRef1: null,
+      watermarkRef2: null,
+      watermarkRef3: null,
+      case1DialogVisible: false,
+      case2DialogVisible: false,
+      case3DialogVisible: false,
       formData: {
         // textStyle
-        content: `CoderMonkey | 码路工人,2018-11-20,@Tokyo`,
+        content: `CoderMonkey,  码路工人`,
+        textAlign: "right",
+        textLeft: 20,
+        textTop: 100,
+        fontSize: 18,
+        lineHeight: 25,
+        rotate: -10,
+        textColor: "#d9d9d94d",
+        textOpacity: 1,
+        // imageStyle
+        repeat: "no-repeat",
+        imagePositionX: "right",
+        imagePositionY: "bottom",
+        imageWidth: 240,
+        imageHeight: 180,
+      },
+      configCase1: {
+        // textStyle
+        content: `CoderMonkey | 码路工人,   2012-04 | by MiOne `,
+        textAlign: "left",
+        textLeft: 0,
+        textTop: 20,
+        fontSize: 18,
+        lineHeight: 25,
+        rotate: 0,
+        textColor: "#b9b9b9",
+        textOpacity: 1,
+        // imageStyle
+        repeat: "no-repeat",
+        imagePositionX: "right",
+        imagePositionY: "bottom",
+        imageWidth: 240,
+        imageHeight: 60,
+      },
+      configCase2: {
+        // textStyle
+        content: `码   路   工   人,CoderMonkey`,
+        textAlign: "left",
+        textLeft: 50,
+        textTop: 100,
+        fontSize: 18,
+        lineHeight: 25,
+        rotate: -20,
+        textColor: "lightgray", //"#d9d9d94d",
+        textOpacity: 1,
+        // imageStyle
+        repeat: "repeat",
+        imagePositionX: "left",
+        imagePositionY: "top",
+        imageWidth: 400,
+        imageHeight: 240,
+      },
+      configCase3: {
+        // textStyle
+        content: `CoderMonkey | 码路工人,2018-11-20          , @Tokyo              `,
         textAlign: "right",
         textLeft: 20,
         textTop: 100,
@@ -257,49 +160,52 @@ export default {
         imageHeight: 180,
       },
     });
-    const computedContent = computed(() => states.formData.content.split(","));
-    const computedImagePosition = computed(
-      () =>
-        `${states.formData.imagePositionX} ${states.formData.imagePositionY}`
-    );
-    const computedOptions = computed(() => {
-      return {
-        content: computedContent.value,
-        targetElement: states.watermarkRef?.$el,
-        textStyle: {
-          /** fillText 的位置 */
-          left: parseInt(states.formData.textLeft),
-          top: parseInt(states.formData.textTop),
-          rotate: states.formData.rotate,
-          align: states.formData.textAlign,
-          fontSize: states.formData.fontSize,
-          lineHeight: states.formData.lineHeight,
-          color: states.formData.textColor,
-          alpha: states.formData.textOpacity,
-        },
-        imageStyle: {
-          /** 水印图片/canvas 的尺寸大小 */
-          width: states.formData.imageWidth,
-          height: states.formData.imageHeight,
-          position: computedImagePosition.value,
-          repeat: states.formData.repeat,
-        },
-      };
-    });
 
-    // const settingJson = computed(() => {
-    //   const copy = JSON.parse(JSON.stringify(computedOptions.value));
-    //   copy.targetElement = "<HTMLElement>[states.watermarkRef?.$el]";
-    //   return copy;
-    // });
+    const getComputedOptions = (formData) => {
+      // const content = states.formData.content.split(",")
+      // const imagePosition = `${states.formData.imagePositionX} ${states.formData.imagePositionY}`
 
-    const handleOptionsChange = () => {
-      marker.setOption(computedOptions.value);
+      const computedContent = computed(() => formData.content.split(","));
+      const computedImagePosition = computed(
+        () => `${formData.imagePositionX} ${formData.imagePositionY}`
+      );
+      const computedOptions = computed(() => {
+        return {
+          content: computedContent.value,
+          textStyle: {
+            /** fillText 的位置 */
+            left: parseInt(formData.textLeft),
+            top: parseInt(formData.textTop),
+            rotate: formData.rotate,
+            align: formData.textAlign,
+            fontSize: formData.fontSize,
+            lineHeight: formData.lineHeight,
+            color: formData.textColor,
+            alpha: formData.textOpacity,
+          },
+          imageStyle: {
+            /** 水印图片/canvas 的尺寸大小 */
+            width: formData.imageWidth,
+            height: formData.imageHeight,
+            position: computedImagePosition.value,
+            repeat: formData.repeat,
+          },
+        };
+      });
+      return computedOptions;
     };
 
-    const onImageLoad = () => {
-      marker = watermarker.init(states.watermarkRef.$el);
-      handleOptionsChange();
+    const computedOptions = [];
+    computedOptions.push(getComputedOptions(states.configCase1));
+    computedOptions.push(getComputedOptions(states.configCase2));
+    computedOptions.push(getComputedOptions(states.configCase3));
+
+    const showSettingDialog = (i) => {
+      states[`case${i}DialogVisible`] = true;
+    };
+
+    const handleSetting = (i, reset = false) => {
+      markers[i].setOption(computedOptions[i].value, reset);
     };
 
     const onWindowResize = () => {
@@ -308,18 +214,33 @@ export default {
 
     onMounted(() => {
       window.addEventListener("resize", onWindowResize);
+
+      markers.push(watermarker.init(states.watermarkRef1));
+      markers.push(watermarker.init(states.watermarkRef2));
+      markers.push(watermarker.init(states.watermarkRef3));
+
+      states.watermarkRef1.setAttribute("src", "./images/clover.png");
+      states.watermarkRef2.setAttribute("src", "./images/tokyo-sky-tree.jpg");
+      states.watermarkRef3.setAttribute(
+        "src",
+        "https://gitee.com/Coding-Worker/picture/raw/master/2021-7-28/1627448089888-tokyo-sky-tree.jpg"
+      );
+
+      states.watermarkRef1.onload = handleSetting(0);
+      states.watermarkRef2.onload = handleSetting(1);
+      states.watermarkRef3.onload = handleSetting(2);
     });
 
     onBeforeUnmount(() => {
       window.removeEventListener("resize", onWindowResize);
-      marker && marker.clear();
+      markers && markers.forEach((m) => m.clear());
     });
 
     return {
       ...toRefs(states),
-      handleOptionsChange,
-      onImageLoad,
       computedOptions,
+      showSettingDialog,
+      handleSetting,
     };
   },
 };
@@ -330,6 +251,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  :deep(.el-button) {
+    margin: 10px 0;
+  }
+
+  .case-title:not(:first-child) {
+    margin-top: 15px;
+  }
 
   .page-section__setting-json {
     width: 100%;

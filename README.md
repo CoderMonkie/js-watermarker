@@ -9,6 +9,10 @@
 > v2.x 支持创建多个实例，分别给页面多多个元素设置不同水印  
 > v2.x support multi-instance to set different wartermarks for different elements  
 > v2.x 複数インスタンスの作成で、複数のウォーターマークを追加できる
+>
+> v2.0.1 支持设置图片水印
+> v2.0.1 watermark for image
+> v2.0.1 イメージにウォーターマーク
 
 ## 安装 | Install | インストール
 
@@ -54,6 +58,7 @@ In Vue3 project:
 </template>
 
 <script>
+import { onMounted } from 'vue';
 import watermarker from "js-watermarker";
 
 export default {
