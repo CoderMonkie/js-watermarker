@@ -39,7 +39,7 @@
       <el-button @click="showSettingDialog(3)"
         >点我修改水印配置 | Click me to set watermark</el-button
       >
-      <img ref="watermarkRef3" class="el-image__inner" />
+      <img ref="watermarkRef3" class="el-image__inner" crossorigin="anonymous" />
       <DialogConfigSetting
         v-if="case3DialogVisible"
         v-model:visible="case3DialogVisible"
@@ -223,7 +223,8 @@ export default {
       states.watermarkRef2.setAttribute("src", "./images/tokyo-sky-tree.jpg");
       states.watermarkRef3.setAttribute(
         "src",
-        "https://gitee.com/Coding-Worker/picture/raw/master/2021-7-28/1627448089888-tokyo-sky-tree.jpg"
+        // "https://gitee.com/Coding-Worker/picture/raw/master/2021-7-28/1627448089888-tokyo-sky-tree.jpg" // gitee图不能用了
+        "//resource.wyqcd.com/teldimage/142/c9bd5f3d837d4d0f8d8afe9314fd573d.jpg"
       );
 
       states.watermarkRef1.onload = handleSetting(0);
