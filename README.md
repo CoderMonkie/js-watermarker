@@ -191,6 +191,13 @@ yarn preview
 
 ![](https://gitee.com/Coding-Worker/picture/raw/master/2021-7-5/1625468749708-image.png)
 
+![](./example/public/images/example_case_1_same_origin_image.png)
+![](./example/public/images/example_case_2_same_origin_image_repeat.png)
+![](./example/public/images//example_case_3_cross_origin_image.png)
+
+> Note:  
+> 给跨域图片加水印文字需要资源服务器侧设`Access-Control-Allow-Origin`，同时`img`标签设`crossorigin="anonymous"`
+
 在线示例 | demo online | オンライン Demo
 
 [codermonkie.github.io/js-watermarker](https://codermonkie.github.io/js-watermarker/)
