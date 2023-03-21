@@ -71,7 +71,7 @@ export default {
       // could be no-reactive
       options: {
         // content could be String or Array
-        content: ['Hello World', 'Wartermark Demo']
+        content: ['Hello World', 'Wartermark Demo'],
         // textStyle object
         textStyle: {
           left: 20,
