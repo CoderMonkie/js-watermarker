@@ -34,3 +34,7 @@ first publish
   - debug option  
     disable log in console as default  
     set it to true to open(turn log enabled)
+
+## v2.0.3 | 2023-03-28
+- doc  
+  update README.md, update demo
